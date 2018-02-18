@@ -1,0 +1,17 @@
+.sslp_viewer{
+    margin:auto;
+    text-align: center;
+}
+
+.screenshot{
+    width:900px;
+    height:auto;
+}
+
+.screen{
+    display:none;
+}
+
+.active{
+    display:block;
+}
