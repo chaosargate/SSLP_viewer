@@ -11,18 +11,33 @@ function toggleDisplay(element) {
     }
 }
 
+function prevScreen() {
+    var screens = $(".screen");
+	$.each(screens, function(index, screen) {
+		if ($(screen).hasClass("active")) {
+			$(screen).removeClass("active");
+			nextVal = index - 1;
+			if (nextVal < 0) {
+				nextVal = screens.length - 1;
+            };
+			$(screens[nextVal]).addClass("active");
+            return false;
+		}
+    })
+}
+
 function nextScreen() {
     var screens = $(".screen");
 	$.each(screens, function(index, screen) {
 		if ($(screen).hasClass("active")) {
 			$(screen).removeClass("active");
 			nextVal = index + 1;
-			if (nextVal == screens.length - 1) {
+			if (nextVal == screens.length) {
 				nextVal = 0;
             };
 			$(screens[nextVal]).addClass("active");
+            return false;
 		}
-		return false;
     })
 }
 
@@ -31,9 +46,9 @@ function init() {
 }
 
 $(document).keydown(function(e) {
-    if (e.which == 13) {
-        $.each($(".screenshot"), function(ssindex, ss) {
-            toggleDisplay($(ss));
-        })
+    if (e.which == 39) {
+        nextScreen();
+    } else if (e.which == 37) {
+        prevScreen();
     }
 })
